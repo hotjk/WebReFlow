@@ -1,0 +1,84 @@
+﻿@using WebReFlow
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link href="~/css/report.css" rel="stylesheet" />
+    <style>
+        .watermark {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+            transform: rotate(-45deg);
+            white-space: nowrap;
+        }
+
+        div.abs-container {
+            position: relative;
+        }
+
+            div.abs-container div {
+                position: absolute;
+                white-space: nowrap;
+            }
+
+                div.abs-container div.abs-td {
+                    position: absolute;
+                    border: 1px solid #000;
+                    border-collapse: collapse;
+                    background-color: whitesmoke
+                }
+
+                div.abs-container div.abs-th {
+                    position: absolute;
+                    border: 1px solid #000;
+                    border-collapse: collapse;
+                    background-color: #deecfe
+                }
+    </style>
+
+    <script>
+        function createWatermarks() {
+            const watermarkText = '张三 13911223232';
+            const watermarkSize = 200; // 水印之间的间距
+            const pageWidth = window.innerWidth;
+            const pageHeight = document.body.scrollHeight;
+
+            // 计算需要多少行和列的水印
+            const rows = Math.ceil(pageHeight / watermarkSize);
+            const cols = Math.ceil(pageWidth / watermarkSize);
+
+            const watermarkDivs = document.querySelectorAll('div.watermark');
+            watermarkDivs.forEach(div => div.remove());
+
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const watermark = document.createElement('div');
+                    watermark.className = 'watermark';
+                    watermark.textContent = watermarkText;
+                    watermark.style.top = `${i * watermarkSize}px`;
+                    watermark.style.left = `${j * watermarkSize}px`;
+                    document.body.appendChild(watermark);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+<script>
+    const reflow = async ()=>{
+        var response = await fetch("reflow");
+        document.body.innerHTML = await response.text();
+        createWatermarks();
+    }
+    window.onload = reflow;
+    window.onresize = createWatermarks;
+</script>
+</html>

@@ -1,0 +1,23 @@
+﻿@using WebReFlow
+@{
+    Layout = null;
+}
+@model (Character[] Characters, Table[] Tables)
+
+<div class="abs-container">
+    @foreach (var table in Model.Tables)
+    {
+        foreach (TableCell th in table.ths)
+        {
+    <div class='abs-th' style='top:@(th.y)px; left:@(th.x)px; width:@(th.w)px; height:@(th.h)px;'></div>
+        }
+        foreach (TableCell td in table.tds)
+        {
+    <div class='abs-td' style='top:@(td.y)px; left:@(td.x)px; width:@(td.w)px; height:@(td.h)px;'></div>
+        }
+    }
+    @foreach (Character c in Model.Characters)
+    {
+    <div style='left:@(c.x)px; top:@(c.y)px;'>@c.t</div>
+    }
+</div>

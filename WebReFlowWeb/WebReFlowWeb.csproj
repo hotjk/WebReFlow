@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ChromeHeadlessShell\**" />
+    <Compile Remove="Chrome\**" />
+    <Content Remove="ChromeHeadlessShell\**" />
+    <Content Remove="Chrome\**" />
+    <EmbeddedResource Remove="ChromeHeadlessShell\**" />
+    <EmbeddedResource Remove="Chrome\**" />
+    <None Remove="ChromeHeadlessShell\**" />
+    <None Remove="Chrome\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\report.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\report.css">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebReFlow\WebReFlow.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ExtractCharacter.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExtractTable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="report.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
