@@ -10,6 +10,13 @@
     <title></title>
     <link href="~/css/report.css" rel="stylesheet" />
     <style>
+        @@media print {
+            body
+            {
+                display: none !important;
+            }
+        }
+
         .watermark {
             position: absolute;
             font-size: 20px;
@@ -80,5 +87,13 @@
     }
     window.onload = reflow;
     window.onresize = createWatermarks;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.oncopy = function() { return false; };
+        document.onpaste = function() { return false; };
+        document.oncut = function() { return false; };
+        document.oncontextmenu = function() { return false; };
+        document.onselectstart = function() { return false; };
+    });
 </script>
 </html>
