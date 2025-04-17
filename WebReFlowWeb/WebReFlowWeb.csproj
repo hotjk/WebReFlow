@@ -32,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ExtractText.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="ExtractCharacter.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
